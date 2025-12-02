@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="2dp"
+    app:strokeWidth="0dp"
+    app:cardBackgroundColor="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <FrameLayout
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/bg_circle_icon">
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/ic_menu_agenda"
+                    app:tint="#6200EE"/>
+            </FrameLayout>
+
+            <View android:layout_width="0dp" android:layout_weight="1" android:layout_height="0dp"/>
+
+            <TextView
+                android:id="@+id/tvBentoCodigo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MAT-101"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:background="#F0F0F0"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:textColor="#555"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvBentoTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Matemáticas"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#222"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:layout_marginBottom="4dp">
+            <ImageView android:layout_width="12dp" android:layout_height="12dp" android:src="@android:drawable/ic_menu_recent_history" app:tint="#888" android:layout_marginEnd="6dp"/>
+            <TextView android:id="@+id/tvBentoHorario" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10:00 AM" android:textSize="12sp" android:textColor="#666"/>
+        </LinearLayout>
+
+        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:layout_marginBottom="12dp">
+            <ImageView android:layout_width="12dp" android:layout_height="12dp" android:src="@android:drawable/ic_menu_mapmode" app:tint="#888" android:layout_marginEnd="6dp"/>
+            <TextView android:id="@+id/tvBentoAula" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Aula B-21" android:textSize="12sp" android:textColor="#666"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvBentoAlumnos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sin alumnos"
+            android:textSize="11sp"
+            android:textColor="#888"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/btnBentoAddAlumno"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="32dp"
+                android:background="#F5F5FA"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+                <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@android:drawable/ic_input_add" app:tint="#6200EE"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Alumno" android:textSize="11sp" android:textColor="#6200EE" android:textStyle="bold" android:layout_marginStart="4dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnBentoOptions"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="#F5F5FA"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+                <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/ic_menu_more" app:tint="#444"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

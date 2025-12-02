@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F2F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="20dp"
+            android:elevation="4dp"
+            android:layout_marginBottom="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@android:drawable/ic_menu_my_calendar"
+                    app:tint="#6200EE"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mi Galería Académica"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:layout_marginStart="12dp"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gestiona tus materias y ubicaciones"
+                android:textColor="#777777"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaGaleria"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:padding="8dp"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:id="@+id/tvVacio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No tienes materias registradas.\nPulsa el botón '+' para comenzar."
+            android:gravity="center"
+            android:textColor="#999"
+            android:textSize="16sp"
+            android:layout_marginTop="50dp"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/overlayModal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        android:elevation="20dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardSeleccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="10dp"
+            android:visibility="gone">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="30dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@android:drawable/ic_input_add"
+                    app:tint="#333"
+                    android:layout_marginBottom="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¿Qué deseas registrar?"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="24dp"/>
+
+                <Button
+                    android:id="@+id/btnOpcionAlumno"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Nuevo Estudiante"
+                    android:backgroundTint="#6200EE"
+                    app:cornerRadius="12dp"
+                    android:layout_marginBottom="12dp"/>
+                <Button
+                    android:id="@+id/btnOpcionMateria"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Nueva Materia"
+                    android:backgroundTint="#03DAC5"
+                    android:textColor="#000"
+                    app:cornerRadius="12dp"/>
+                <Button
+                    android:id="@+id/btnCerrarModal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cancelar"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:textColor="#FF5252"
+                    android:layout_marginTop="16dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardFormAlumno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            app:cardCornerRadius="24dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:background="#F8F9FA">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Registrar Alumno"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#333"
+                    android:layout_marginBottom="20dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFF"
+                    android:padding="16dp"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="12dp"
+                    android:elevation="2dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Identificación"
+                        android:textSize="12sp"
+                        android:textColor="#888"
+                        android:layout_marginBottom="4dp"/>
+                    <EditText
+                        android:id="@+id/edtAluCod"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Código (Ej: SM1002)"
+                        android:background="@null"
+                        android:textSize="16sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFF"
+                    android:padding="16dp"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp"
+                    android:elevation="2dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Información Personal"
+                        android:textSize="12sp"
+                        android:textColor="#888"
+                        android:layout_marginBottom="8dp"/>
+                    <EditText
+                        android:id="@+id/edtAluNom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nombres"
+                        android:background="@null"
+                        android:layout_marginBottom="12dp"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#EEE"
+                        android:layout_marginBottom="12dp"/>
+                    <EditText
+                        android:id="@+id/edtAluApe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Apellidos"
+                        android:background="@null"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/btnCancelarAlu"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="55dp"
+                        android:text="Cancelar"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:textColor="#555"
+                        android:layout_marginEnd="8dp"/>
+                    <Button
+                        android:id="@+id/btnGuardarAluFinal"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="55dp"
+                        android:text="Guardar"
+                        android:backgroundTint="#6200EE"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardFormMateria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            app:cardCornerRadius="24dp"
+            android:visibility="gone">
+
+            <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:background="#F8F9FA">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nueva Materia"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:layout_marginBottom="20dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="0.4"
+                            android:layout_height="match_parent"
+                            android:background="#FFF"
+                            android:padding="12dp"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="10dp"
+                            android:elevation="2dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Cód."
+                                android:textSize="10sp"
+                                android:textColor="#888"/>
+                            <EditText
+                                android:id="@+id/edtMatCod"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="MAT1"
+                                android:textSize="14sp"
+                                android:background="@null"
+                                android:inputType="textCapCharacters"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="0.6"
+                            android:layout_height="match_parent"
+                            android:background="#FFF"
+                            android:padding="12dp"
+                            android:orientation="vertical"
+                            android:elevation="2dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Asignatura"
+                                android:textSize="10sp"
+                                android:textColor="#888"/>
+                            <EditText
+                                android:id="@+id/edtMatNom"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Ej. Historia"
+                                android:textSize="14sp"
+                                android:background="@null"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:background="#E3F2FD"
+                            android:padding="12dp"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="10dp"
+                            android:elevation="0dp">
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="14dp"
+                                    android:src="@android:drawable/ic_menu_agenda"
+                                    app:tint="#1976D2"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text=" Horario"
+                                    android:textSize="11sp"
+                                    android:textColor="#1976D2"
+                                    android:textStyle="bold"/>
+                            </LinearLayout>
+                            <EditText
+                                android:id="@+id/edtMatHor"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="--:--"
+                                android:textColor="#000"
+                                android:textStyle="bold"
+                                android:background="@null"
+                                android:focusable="false"
+                                android:clickable="true"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:background="#FFF"
+                            android:padding="12dp"
+                            android:orientation="vertical"
+                            android:elevation="2dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Aula / Ubicación"
+                                android:textSize="10sp"
+                                android:textColor="#888"/>
+                            <EditText
+                                android:id="@+id/edtMatAula"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="B-21"
+                                android:background="@null"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFF"
+                        android:padding="16dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="24dp"
+                        android:elevation="2dp">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_myplaces"
+                            app:tint="#555"
+                            android:layout_marginEnd="12dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Docente Encargado"
+                                android:textSize="10sp"
+                                android:textColor="#888"/>
+                            <EditText
+                                android:id="@+id/edtMatDoc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Nombre del profesor"
+                                android:background="@null"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/btnCancelarMat"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="55dp"
+                            android:text="Cancelar"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:textColor="#555"
+                            android:layout_marginEnd="8dp"/>
+                        <Button
+                            android:id="@+id/btnGuardarMatFinal"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="55dp"
+                            android:text="Crear Materia"
+                            android:backgroundTint="#03DAC5"
+                            android:textColor="#000"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabBuscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="90dp"
+        android:layout_marginEnd="24dp"
+        android:src="@android:drawable/ic_menu_search"
+        app:backgroundTint="#03DAC5"
+        app:tint="#FFF"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabRegistrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="24dp"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="#6200EE"
+        app:tint="#FFF"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
