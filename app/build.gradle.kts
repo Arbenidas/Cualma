@@ -1,18 +1,19 @@
+// Archivo: app/build.gradle.kts (Module: app)
+
 plugins {
     alias(libs.plugins.android.application)
 }
 
 android {
     namespace = "com.example.cualma"
-    compileSdk = 36
+    compileSdk = 34 // Versión estable
 
     defaultConfig {
         applicationId = "com.example.cualma"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -26,13 +27,13 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-
+    // Asegúrate de haber corregido las versiones en libs.versions.toml como vimos en el paso anterior
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
